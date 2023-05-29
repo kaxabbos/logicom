@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Добавить сотрудника</title>
+</head>
+
+<head th:insert="blocks\head :: head"></head>
+
+<body id="page-top">
+<div id="wrapper">
+    <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0 accent"
+         style="background: linear-gradient(0deg, #00b760, #7fba00);" th:insert="blocks/navLeft :: nav"></nav>
+    <div class="d-flex flex-column" id="content-wrapper">
+        <div id="content">
+            <div th:insert="blocks/navTop :: nav"></div>
+            <div class="container-fluid">
+                <h3 class="text-dark mb-4">Добавить сотрудника</h3>
+                <div th:if="${message}" class="text-center mt-20px">
+                    <div class="alert alert-success" role="alert">
+                        <strong><span th:text="${message}"></span></strong>
+                    </div>
+                </div>
+                <form action="/userAdd/add" method="post">
+                    <div class="row">
+                        <div class="col">
+                            <div class="mb-3">
+                                <label class="form-label text-dark" for="username">
+                                    <strong>Логин</strong>
+                                </label>
+                                <input class="form-control" type="text" id="username" placeholder="Логин"
+                                       name="username" required>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="mb-3">
+                                <label class="form-label text-dark"
+                                       for="password">
+                                    <strong>Пароль</strong>
+                                </label>
+                                <input class="form-control" type="password" id="password" placeholder="Пароль"
+                                       name="password" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="mb-3">
+                                <label class="form-label text-dark" for="fio">
+                                    <strong>Наименование</strong>
+                                </label>
+                                <input class="form-control" type="text" name="fio" id="fio" placeholder="Наименование" required>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="mb-3">
+                                <label class="form-label text-dark" for="role">
+                                    <strong>Должность</strong>
+                                </label>
+                                <select class="form-select" name="role" id="role">
+                                    <option th:each="role : ${roles}" th:label="${role.getName()}" th:value="${role}"></option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-outline-primary mr-10px" type="submit">Добавить</button>
+                    <button class="btn btn-secondary" type="reset">Очистить</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/theme.js"></script>
+</body>
+
+</html>
